@@ -42,8 +42,9 @@ class NotificationHelper {
       title,
       tzScheduledTime,
       notificationDetails,
-      androidAllowWhileIdle: true,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle, // Tambahkan ini
       uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
     );
+
   }
 }
