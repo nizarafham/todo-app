@@ -1,3 +1,5 @@
+import 'package:todo_app/data/models/todo_model.dart';
+
 import '../../domain/repositories/todo_repository.dart';
 import '../../domain/entities/todo.dart';
 import '../datasources/local_todo_data_source.dart';
@@ -14,7 +16,7 @@ class TodoRepositoryImpl implements TodoRepository {
 
   @override
   Future<void> addTodo(Todo todo) async {
-    await localDataSource.addTodo(todo);
+    await localDataSource.addTodo(TodoModel.fromEntity(todo));  // Konversi sebelum menyimpan
   }
 
   @override

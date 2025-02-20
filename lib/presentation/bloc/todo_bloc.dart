@@ -34,9 +34,13 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
 
   void _onAddTodo(AddTodoEvent event, Emitter<TodoState> emit) async {
     if (state is TodoLoaded) {
-      final List<Todo> updatedTodos = List.from((state as TodoLoaded).todos)..add(event.todo);
-      await addTodo(event.todo);
-      emit(TodoLoaded(updatedTodos));
+      try {
+        await addTodo(event.todo);  // Tambahkan ke database dulu
+        final todos = await getTodos();  // Ambil ulang daftar To-Do
+        emit(TodoLoaded(todos));  // Emit state baru
+      } catch (e) {
+        emit(TodoError('Gagal menambah To-Do: $e'));
+      }
     }
   }
 

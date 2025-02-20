@@ -9,9 +9,12 @@ import 'package:todo_app/data/datasources/local_todo_data_source_impl.dart';
 import 'package:todo_app/data/repositories/todo_repository_impl.dart';
 import 'package:todo_app/domain/usecases/get_todos.dart';
 import 'package:todo_app/presentation/bloc/todo_bloc.dart';
+import 'package:todo_app/core/utils/notification_helper.dart'; // Tambahkan import
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await NotificationHelper().initNotifications(); // Tambahkan ini
 
   final localDataSource = LocalTodoDataSourceImpl();
   final todoRepository = TodoRepositoryImpl(localDataSource);
@@ -52,7 +55,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'To-Do List',
+        title: 'ma luv rawr',
         home: TodoListPage(),
       ),
     );
